@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary fw-bold">Welcome to Tweeter</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-success px-4 py-2 shadow-sm" href="{% url 'tweet_create' %}">
+            ➕ Create New Tweet
+        </a>
+    </div>
+
+    <!-- Tweet grid -->
+    <div class="d-flex flex-wrap gap-4 justify-content-start">
+        {% for tweet in tweets %}
+        <div class="card shadow border-0 bg-white hover-effect" style="width: 18rem;">
+            {% if tweet.photo %}
+            <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet image"
+                style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-primary">@{{ tweet.user.username }}</h5>
+                <p class="card-text text-dark">{{ tweet.text }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
+                <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-outline-primary btn-sm px-3">Edit</a>
+                <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-outline-danger btn-sm px-3">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-muted mt-4">
+            <p>No tweets yet. Create one to get started!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Hover animation -->
+<style>
+.hover-effect {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-effect:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure tweets start from left and wrap max 3 per row */
+.d-flex.flex-wrap {
+    justify-content: flex-start;
+}
+</style>
+{% endblock %}
