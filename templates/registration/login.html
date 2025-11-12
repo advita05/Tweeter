@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-5 border-0" style="max-width: 450px; width: 100%; background-color: #ffffff;">
+        <h2 class="text-center text-primary fw-bold mb-4">Welcome Back</h2>
+
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary fw-semibold py-2">
+                    Login
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <small class="text-#007bff">Don’t have an account?</small>
+            <a href="{% url 'register' %}" class="text-decoration-none fw-semibold">Register here</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    transition: all 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* "Don't have an account?" text below login button */
+.card .text-center.mt-3 small {
+    color: #007bff; /* text color */
+    font-size: 0.9rem;
+}
+.card .text-center.mt-3 a {
+    color: #0056b3; /* link color */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.card .text-center.mt-3 a:hover {
+    color: #003f7f; /* darker blue on hover */
+    text-decoration: underline;
+}
+
+form p {
+    margin-bottom: 1rem;
+}
+form label {
+    font-weight: 600;
+    color: #007bff;
+}
+form input {
+    color: #007bff;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s ease;
+    background-color: #fff;
+}
+form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
+    <h2 style="color: #ff4d4d;">Logged Out</h2>
+    <p style="font-size: 18px; color: #555;">
+        You have been logged out. 
+        <a href="{% url 'login' %}" style="color: #007bff; text-decoration: none;">Login again?</a>
+    </p>
+</div>
+{% endblock %}
